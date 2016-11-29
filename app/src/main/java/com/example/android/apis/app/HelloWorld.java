@@ -51,6 +51,7 @@ public class HelloWorld extends Activity
      * Initialization of the Activity after it is first created.  Must at least
      * call {@link android.app.Activity#setContentView setContentView()} to
      * describe what is to be displayed in the screen.
+     * 已看完11.28
      */
     @Override
 	protected void onCreate(Bundle savedInstanceState)

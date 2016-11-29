@@ -18,9 +18,12 @@
      See corresponding Java code com.android.sdk.app.DialogActivity.java. -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="4dp" android:gravity="center_horizontal">
+        android:padding="4dp">
+        <!--android:gravity="center_horizontal"-->
+
     
     <!-- Message to show to use. -->
     <TextView android:id="@+id/text"

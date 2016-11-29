@@ -18,6 +18,7 @@ package com.example.android.apis.app;
 
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
+
 import com.example.android.apis.R;
 
 import android.app.Activity;
@@ -45,20 +46,20 @@ public class Animation extends Activity {
         setContentView(R.layout.activity_animation);
 
         // Watch for button clicks.
-        Button button = (Button)findViewById(R.id.fade_animation);
+        Button button = (Button) findViewById(R.id.fade_animation);
         button.setOnClickListener(mFadeListener);
-        button = (Button)findViewById(R.id.zoom_animation);
+        button = (Button) findViewById(R.id.zoom_animation);
         button.setOnClickListener(mZoomListener);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            button = (Button)findViewById(R.id.modern_fade_animation);
+            button = (Button) findViewById(R.id.modern_fade_animation);
             button.setOnClickListener(mModernFadeListener);
-            button = (Button)findViewById(R.id.modern_zoom_animation);
+            button = (Button) findViewById(R.id.modern_zoom_animation);
             button.setOnClickListener(mModernZoomListener);
-            button = (Button)findViewById(R.id.scale_up_animation);
+            button = (Button) findViewById(R.id.scale_up_animation);
             button.setOnClickListener(mScaleUpListener);
-            button = (Button)findViewById(R.id.zoom_thumbnail_animation);
+            button = (Button) findViewById(R.id.zoom_thumbnail_animation);
             button.setOnClickListener(mZoomThumbnailListener);
-            button = (Button)findViewById(R.id.no_animation);
+            button = (Button) findViewById(R.id.no_animation);
             button.setOnClickListener(mNoAnimationListener);
         } else {
             findViewById(R.id.modern_fade_animation).setEnabled(false);
@@ -82,6 +83,10 @@ public class Animation extends Activity {
             // activity on top.  Note that we need to also supply an animation
             // (here just doing nothing for the same amount of time) for the
             // old activity to prevent it from going away too soon.
+            /**
+             * 参一是动画进入的模式，fromAlpha 0到1 通道设置透明度
+             * 参二是动画退出的模式，fromXDelta 0到0 没有发生变化
+             */
             overridePendingTransition(R.anim.fade, R.anim.hold);
         }
     };
@@ -135,6 +140,9 @@ public class Animation extends Activity {
             Log.i(TAG, "Starting scale-up animation...");
             // Create a scale-up animation that originates at the button
             // being pressed.
+            //说明下几个参数，第1个参数是scale哪个view的大小，
+            // 第2和3个参数是以view为基点，从哪开始动画，这里是该view的中心，
+            // 4和5参数是新的activity从多大开始放大，这里是从无到有的过程。
             ActivityOptions opts = ActivityOptions.makeScaleUpAnimation(
                     v, 0, 0, v.getWidth(), v.getHeight());
             // Request the activity be started, using the custom animation options.
@@ -152,9 +160,12 @@ public class Animation extends Activity {
             v.setDrawingCacheEnabled(true);
             v.setPressed(false);
             v.refreshDrawableState();
+            //调用getDrawingCache一定要setDrawingCacheEnabled(true)
             Bitmap bm = v.getDrawingCache();
             Canvas c = new Canvas(bm);
             //c.drawARGB(255, 255, 0, 0);
+            //第2个参数是指那个图片要放大，
+            // 3和4参数表示从哪开始动画
             ActivityOptions opts = ActivityOptions.makeThumbnailScaleUpAnimation(
                     v, bm, 0, 0);
             // Request the activity be started, using the custom animation options.

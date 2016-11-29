@@ -40,12 +40,15 @@ public class DialogActivity extends Activity {
      * Initialization of the Activity after it is first created.  Must at least
      * call {@link android.app.Activity#setContentView setContentView()} to
      * describe what is to be displayed in the screen.
+     * 已看完，11.28
+     * 可以通过在清单文件里注册它的注意实现dialog的模式
      */
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         // Be sure to call the super class.
         super.onCreate(savedInstanceState);
 
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         requestWindowFeature(Window.FEATURE_LEFT_ICON);
 
 
@@ -53,9 +56,11 @@ public class DialogActivity extends Activity {
         // view layout definition, which is being set here as
         // the content of our screen.
         setContentView(R.layout.dialog_activity);
-        getWindow().setTitle("This is just a test");
+        //getWindow().
+                setTitle("This is just a test");
 
-        getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON,
+        //getWindow().
+                setFeatureDrawableResource(Window.FEATURE_LEFT_ICON,
                 android.R.drawable.ic_dialog_alert);
 
         Button button = (Button)findViewById(R.id.add);
